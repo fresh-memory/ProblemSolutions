@@ -1,4 +1,9 @@
 public class isValidPalindrome {
+/***
+*
+*Knows how to decide a character is a valid character!
+*/
+
  public static boolean isPalindrome(String s) {
         // Start typing your Java solution below
         // DO NOT write main() function
