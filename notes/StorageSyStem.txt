@@ -1,0 +1,56 @@
+Data Storage high level requirements:
+
+Availability
+Scalability
+Consistency
+Latency
+NO single point of Failure
+
+
+***UDB Carmot***
+
+Common: heavy read, light write
+
+UDB: keyValue stores on file system
+Carmot: keyValue store in mdbm???
+
+*** HBASE ***
+
+Master server ->NameNode
+Region server -> DataNode
+Based on HDFS 
+
+    HBase保证写入的一致性。当一份数据被要求复制N份的时候，只有N份数据都被真正复制到N台服务器上之后，客户端才会成功返回。如果在复制过程中出现失败，所有的复制都将失败。连接上任何一台服务器的客户端都无法看到被复制的数据。
+    HBase提供行锁，但是不提供多行锁和事务。
+    HBase基于HDFS，因此数据的多份复制功能和可靠性将由HDFS提供。
+    HBase和MapReduce天然集成。
+
+
+keeper能够帮助提供全局锁。
+
+
+***Casandra***
+
+Cassandra is essentially a hybrid between a key-value and a row-oriented (or tabular) database.
+
+Dynamo partitioning and replication
+Log-structured ColumnFamily data model similar to Bigtable's 
+p2p to avaoid single point failure
+
+Details:
+O(1) lookup
+Explicit replication
+Eventually consistent (not strictly consitent) 
+
+
+***Dynamo***
+How can we build a distributed hash table appropriate for the data center?
+Implies scalability/replication/partition  issues
+
+
+***Bigtable***  
+
+How can we build a distributed db on top of GFS?
+Implies the actual file system storage... log structured columnFamily
+
+
