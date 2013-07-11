@@ -1,0 +1,6 @@
+Elevator button1 can go up one floor
+         button2 can go up three floor
+
+Ask: how many ways to go to nth floor?
+
+Recursive is easy and need to write iterative one as well.--> one dimension DP

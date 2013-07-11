@@ -1,0 +1,50 @@
+Reading Notes- Regularization and model selction by Andrew Ng.
+
+*** MODEL SELECTION***
+How can we automatically select a model that represnts a good tradeoff bwteen evil twins of bias and variance?
+
+Cross-validation
+
+hold-out cross validation --- typically 30% hold out
+
+k-fold cross validation  k usually =10 ----each time hold out 1/k data  the training erros are then averaged together to obtain the estimateion of the generalization error of a model.
+
+*** FEATURE SELECTION ******
+
+
+Forward search  --adding one feature each time
+Backward search -- reducing one feature each time
+
+Stopping criteria: reached to full(0) features or meet a threshold (max number of feature we want to select))
+Cons: sometime still need to explore the full feature space 2^n
+and need to call the learning algo each iteration -- computation expensive.
+
+Filter Feature selection gives heuristics
+ Find the most indicative features--choosing the features that are most strongly correlated with the class lable
+
+mutual informaiton MI(x,y)  
+Kullback-Leibler (KL) divergence  0 means independent
+
+
+***The size of feature set***
+
+Use cross-validation to select among the possible values of k
+
+
+
+****** OVERFITTING******
+
+Parameter fitting using maximum likelihood (ML)
+Or Bayesian for parameter fitting
+
+In practise, Bayesian MAP estimate to be less susceptible to overfitting than ML estimate of features.
+
+Bayesian is often used in text classification. 
+
+
+
+************* Kernel Methods/ Kernel Function**********
+From wikipedia: 
+KMs approach the problem by mapping the data into a high dimensional feature space, where each coordinate corresponds to one feature of the data items, transforming the data into a set of points in a Euclidean space. In that space, a variety of methods can be used to find relations in the data. Since the mapping can
+
+Kernel Methods owe their name to the use of kernel functions, which enable them to operate in the feature space without ever computing the coordinates of the data in that space, but rather by simply computing the inner products between the images of all pairs of data in the feature space. This operation is often computationally cheaper than the explicit computation of the coordinates. This approach is called the kernel trick. Kernel functions have been introduced for sequence data, graphs, text, images, as well as vectors.

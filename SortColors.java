@@ -4,6 +4,44 @@
 * s tracks the index to fill 0, m tracks the index to fill 1 and e tracks 2
 /
 
+
+
+public class Solution {
+    public void sortColors(int[] A) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+     
+     int lena=A.length;
+     int i=0,j=0,k=lena-1;
+     //must include j==k as 2 may not exist such as  0 1 0r  0 0 case 
+    while(j<=k){
+        
+       if(A[j]==1){
+          j++;
+       }
+       else if(A[j]==2){
+         swap(A,j,k);
+         k--;
+       }
+       else {
+         swap(A,j,i);
+         i++;
+       }//while
+     if(j<i) 
+      j=i;
+    }
+    
+}
+    
+    public void swap(int[] A, int i, int j){
+        int temp = A[i];
+        A[i]=A[j];
+        A[j]=temp;
+    }
+}
+
+
+
 public class Solution {
     public void sortColors(int[] A) {
         // Start typing your Java solution below

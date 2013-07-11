@@ -1,0 +1,7 @@
+1st phone:
+
+Edit Distance variance:
+Given a list of words as dictionary and a word, find all the words that are within zero or one edit distance of the given word.
+  ArrayList EditDistance(List Dictionary, String word)
+
+2nd phone:

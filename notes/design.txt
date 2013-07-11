@@ -1,0 +1,22 @@
+Quote from mitbbs:
+设计题目首先是user requirements，come up with function
+spec;
+
+然后是high level system architecture/diagram，画几个框(Logical compoents)；
+
+然后是Component API;
+
+Walk through use cases，完善API，对于use case能写大概的sequence diagram就更好
+了；walk through的过程也是反复verify user requirement的过程，有些细节可能在这
+个时候会凸现出来。
+
+然后是对核心component的设计，这个时候可能涉及OO design，logical data schema啥
+的；
+
+最后才是数据结构和技术细节，比如你说的Trie
+
+
+
+1. soundex  == similar pronoucation
+2. Levenshtein distance = edit distance
+3. Inverted Index

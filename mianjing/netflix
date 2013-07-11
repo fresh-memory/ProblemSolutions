@@ -1,0 +1,7 @@
+Why you have that many feature?
+what regularization did you use? L1 /L2/ elastic net (combining L1 and L2)
+What optimization did you use?  stocastic gradient descent/maximum likelihood 
+Coding: 
+
+Compress an array     an array contains zero and non zero numbers, write a method to put  all zero to the end of the array
+Similar to remove spaces from a string (paypal asked this before)
