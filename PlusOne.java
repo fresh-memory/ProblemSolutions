@@ -2,6 +2,40 @@ public class Solution {
     public int[] plusOne(int[] digits) {
         // Start typing your Java solution below
         // DO NOT write main() function
+        int[] results = new int[digits.length+1];
+        int carry =1;
+        for(int i=digits.length-1;i>=0;i--){
+            if(digits[i]==9){
+                digits[i]=0;
+            }
+            else {
+                digits[i]=digits[i]+1;
+                return digits;
+            }
+            
+        }
+        
+        
+        results[0]=1;
+        for(int j=1;j<results.length;j++){
+            results[j]=digits[j-1];
+        }    
+        return results;
+        
+    }
+}
+
+
+
+
+
+
+
+
+public class Solution {
+    public int[] plusOne(int[] digits) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
        int len = digits.length;
        int[] res =null;
        if(len==0){

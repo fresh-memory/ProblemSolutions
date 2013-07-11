@@ -1,1 +1,3 @@
-if ( x & 0x1) > 0
+if (x & 0x1) > 0
+// x&0x1 ===  x%2
+decide if x is odd

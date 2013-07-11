@@ -1,5 +1,6 @@
 /**
 *  Cannot pass large test
+*  Bug when first row has 0, this code may create false positives
 * just need to recursive right and down because need to traverse all the matrix. 
 * left and upper will eventually be covered
 *

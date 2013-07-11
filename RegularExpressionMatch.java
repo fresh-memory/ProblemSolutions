@@ -9,6 +9,42 @@ public class Solution {
     public boolean isMatch(String s, String p) {
         // Start typing your Java solution below
         // DO NOT write main() function
+       
+       if(s==null || p==null) return false;
+       int lens =s.length();
+       int lenp = p.length();
+       return helper(s,0,p,0,lens,lenp);
+       
+    }
+    
+    public boolean helper(String s, int m, String p, int n, int lens, int lenp){
+    // if(m>=lens && n>=lenp) return true;
+        if(n>=lenp) return m==lens;
+        if(n+1< lenp && p.charAt(n+1)!='*'){
+            return (m<lens && (s.charAt(m)==p.charAt(n) || p.charAt(n)=='.')) && helper(s,m+1,p,n+1,lens,lenp);        
+        }
+        //n+1 is * 
+        else if(n+1< lenp && p.charAt(n+1)=='*') {
+            
+               while(m<lens &&(p.charAt(n)=='.' || s.charAt(m)==p.charAt(n)) ){             
+                  if(helper(s,m,p,n+2,lens,lenp)) return true;
+                  m++;
+                }
+               return helper(s,m,p,n+2,lens,lenp);
+        }
+        
+        return (m==lens-1 &&(s.charAt(m)==p.charAt(n) ||p.charAt(n)=='.')); 
+}
+
+}
+
+
+
+
+public class Solution {
+    public boolean isMatch(String s, String p) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
         
         return isMatch(s,p,0,0);
     }
@@ -36,7 +72,7 @@ public class Solution {
        }
         //j is the last of p
         else{
-            return (i<s.length()&&(p.charAt(j)==s.charAt(i) ||p.charAt(j)=='.')&&i==s.length()-1);
+            return ((p.charAt(j)==s.charAt(i) ||p.charAt(j)=='.')&&i==s.length()-1);
       }
         
     }

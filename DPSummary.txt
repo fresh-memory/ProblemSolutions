@@ -1,0 +1,10 @@
+DP 
+
+
+Two Dimensional DP
+for(int i=0;i<length-1;i++)}{
+
+
+1. Parser tree -- add parenthesis to maximize overall value
+2. break strings to words
+3. matrix multiplication fewest operation

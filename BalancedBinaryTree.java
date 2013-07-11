@@ -6,6 +6,47 @@
 * yet also possible one of the subtree not balanced but overall balanced
 * so need to left&&right&&current 
 */
+
+
+
+
+
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    
+    public boolean isBalanced(TreeNode root) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+          if(root==null) return true;
+          return getHeight(root)>=0;
+    
+    }
+    
+    public int getHeight(TreeNode root){
+        
+        if(root==null) return 0;
+        int left = getHeight(root.left);
+        int right = getHeight(root.right);
+        if(left<0|| right<0 ||Math.abs(left-right)>1) return -1;
+        else return Math.max(left,right)+1;
+    }
+    
+    
+}
+
+
+
+
+
+
 /**
  * Definition for binary tree
  * public class TreeNode {

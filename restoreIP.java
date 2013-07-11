@@ -5,6 +5,99 @@
 * probbaly better to do recursive breakdown
 /
 
+
+public class Solution {
+    public ArrayList<String> restoreIpAddresses(String s) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+       return helper(s,0,s.length()-1, 4);
+    }
+    
+    ArrayList<String> helper(String s, int left, int right, int parts){
+           
+            ArrayList<String> arr = new ArrayList<String>();
+            if(right-left+1<parts || right-left+1>3*parts) return arr;
+             if(parts==1){
+                if(isValidIP(s,left,right)){
+                   arr.add(s.substring(left,right+1));
+                }
+                return arr;
+             }
+            for(int i=left;i<=right;i++){
+                
+                String comp1=s.substring(left,i+1);
+                //important
+                if(!isValidIP(s,left,i)) continue;
+                ArrayList<String> arr1 = helper(s,i+1,right,parts-1);
+                for(String sss: arr1){
+                    arr.add(comp1+"."+sss);
+                }   
+                if(s.charAt(left)=='0') break;
+                
+            }
+        return arr;
+    }
+    boolean isValidIP(String s, int left, int right){
+
+        if((right-left>0 && s.charAt(left)=='0') || right-left>2) return false;
+         String str = s.substring(left, right+1);
+         int val = Integer.parseInt(str);
+         return val<=255;
+    }
+    
+}
+
+
+public class Solution {
+    public ArrayList<String> restoreIpAddresses(String s) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+         ArrayList<String> arr = new ArrayList<String>();
+         for(int i=1;i<s.length()-2;i++){
+            ArrayList<String> left = twoValidIPComponent(s.substring(0,i+1));
+            ArrayList<String> right = twoValidIPComponent(s.substring(i+1));    
+            for(String a:left){
+                for(String b: right){
+                String res=a+"."+b;
+                arr.add(res);
+             }
+            }
+         }
+         return arr;
+    }
+    
+    
+    
+    ArrayList<String> twoValidIPComponent(String sub){
+                  ArrayList<String> arr= new ArrayList<String>();
+                 if(sub.length()>6) return arr;
+                 for(int i=0;i<sub.length()-1;i++){
+                     boolean left = isValidIP(sub, 0,i);
+                     boolean right = isValidIP(sub, i+1,sub.length()-1);
+                    if(left&&right){
+                        String ss =sub.substring(0,i+1)+"."+sub.substring(i+1);
+                            arr.add(ss);
+                    }
+                 }
+           return arr;
+    }
+    
+    boolean isValidIP(String s, int left, int right){
+        
+        if((right-left>0 && s.charAt(left)=='0') || right-left>2) return false;
+         String str = s.substring(left, right+1);
+         int val = Integer.parseInt(str);
+         return val<=255;
+    }
+    
+}
+
+
+
+
+
+
+
 public class Solution {
     public ArrayList<String> restoreIpAddresses(String s) {
         // Start typing your Java solution below

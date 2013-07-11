@@ -1,6 +1,5 @@
 /*
 *  Be careful about how to change /add Object returned from a method call.
-* Some function return value may not be as expected. E.g., cannot do arr.add(anotherArrayList.add(i)) since add return boolean rather than anotherArrayList itself.
 * 
 *
 *
