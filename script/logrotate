@@ -1,0 +1,10 @@
+#!/bin/bash
+
+pkg=w_cron
+
+/usr/sbin/logrotate /home/conf/$pkg/w_cron_logrotate.conf
+EXITVALUE=$?
+if [ $EXITVALUE != 0 ]; then
+    /usr/bin/logger -t logrotate "ALERT exited abnormally with [$EXITVALUE]"
+fi
+exit 0
