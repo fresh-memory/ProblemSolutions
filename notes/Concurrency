@@ -1,3 +1,10 @@
 Local variable is never shared among threads so always thread safe.
 Local object may or may not be thread safe depending on if the object is passed to another thread. (objects are stored in the shared heap.
 Object members are stored on the heap along with the object so it is not thread safe when two thread call a method on the same object instance and the method updates object members.)
+
+Synchronized vs ASynchronized
+Main thread needs to wait subthread  vs
+main threads can execute other process while sub thread is kicked off to work on sth.
+
+
+ThreadPool / Bounded Queue /ExecutorService /Future /callable

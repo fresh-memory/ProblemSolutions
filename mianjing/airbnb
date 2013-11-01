@@ -5,3 +5,17 @@ Given a list of words as dictionary and a word, find all the words that are with
   ArrayList EditDistance(List Dictionary, String word)
 
 2nd phone:
+delete a node from a bst
+insert a node from a bst
+
+Onsite:
+
+1.Design twitter
+2.compute march madness scores: 64 teams, single elimination 
+Given perfect result and predict result, compute the score for the prediction
+
+63 bit boolean array and need to decide conditions to compute score
+3. Given a dictionary of words, build a possible ordered alphabets
+
+Build a graph storing the inferred relatiosn of letters
+Then search the graph to derive the alphabet: find the nodes don't have in-links, process it, remove all the links it points to others and find the next node without inlinks to process until node don't have out links.

@@ -9,6 +9,43 @@
 *   Similar to longest common substring/subsequence
 */
 
+
+public class Solution {
+    public int minDistance(String word1, String word2) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        int m = word1.length();
+        int n = word2.length();
+        int[][] resArray = new int[m+1][n+1];
+        resArray[0][0]=0;
+        for(int i=1;i<n+1;i++){
+            resArray[0][i]=resArray[0][i-1]+1;
+        }
+        for(int j=1;j<m+1;j++){
+            resArray[j][0]=resArray[j-1][0]+1;
+        }
+        for(int i=1;i<m+1;i++){
+            for(int j=1;j<n+1;j++){
+                int deleteCost=resArray[i][j-1]+1;
+                int insertCost=resArray[i-1][j]+1;
+                int replaceCost=(word1.charAt(i-1)==word2.charAt(j-1)?resArray[i-1][j-1]:resArray[i-1][j-1]+1);
+                resArray[i][j]=Math.min(Math.min(deleteCost,insertCost),replaceCost);
+                
+            }
+        }
+        return resArray[m][n];
+    }
+}
+
+
+
+
+
+
+
+
+
+
 public class Solution {
     public int minDistance(String word1, String word2) {
         // Start typing your Java solution below

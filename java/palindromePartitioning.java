@@ -57,4 +57,73 @@ public class Solution {
         }
         return true;
     }
+
+
 }
+
+
+
+
+
+
+
+
+/**
+* Backtracking
+*
+*/   
+
+      public class PalindormePartion{
+	
+	ArrayList<ArrayList<String>> all=new ArrayList<ArrayList<String>>();
+	  
+    boolean isPalin(String s, int i, int j){
+        while(i<j){
+            if(s.charAt(i)!=s.charAt(j)) return false;
+            i++;
+            j--;
+        }  
+        return true;
+    }
+  
+    void dfs(String s, int start, ArrayList<String> al){
+        if(start==s.length()){
+            all.add(new ArrayList<String>(al));
+            System.out.println("al="+al.toString());
+            return;
+        }
+        for(int i=start+1;i<=s.length();i++){
+        	if(i==2){
+        		System.out.println("start="+start);
+        		System.out.println("substring = "+s.substring(start,i));
+        	}
+        	
+            if(isPalin(s,start,i-1)){
+                al.add(s.substring(start,i));
+                System.out.println(s.substring(start,i));
+                dfs(s,i,al);
+                al.remove(al.size()-1);
+            }
+        }  
+    }
+  
+    public ArrayList<ArrayList<String>> partition(String s) {
+        all.clear();
+        ArrayList<String> al=new ArrayList<String>();
+        dfs(s,0,al);
+        return all;
+    }
+	
+	public static void main(String[] args){
+		StringProblems sp = new StringProblems();
+		String s = "a";
+		String p = "a*";
+		
+		//System.out.println(sp.isMatch(s, p));
+		String str = "thiisss iss a sennnntttenceee";
+	  // System.out.println(sp.topChar(str.toCharArray()));
+	    String ss = "abaaba";
+	    
+	    sp.partition(ss);    
+	
+	}

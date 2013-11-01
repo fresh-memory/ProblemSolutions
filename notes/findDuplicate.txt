@@ -1,0 +1,35 @@
+Given a 10001 size array contains 1-10000 integers and having one duplicate, find the duplicate
+One of the solutions is sum(ALL) - sum(1+2+..+10000)) THE PROBLEM IS OVERFLOW
+
+Take away is need to manipulate index of array to get extra space.
+Three good solutions:
+
+  
+  int findDup(int[] arr,int size){
+        int res=0;
+        for(int i=0;i<size;i++){
+           res+=arr[i]-i;
+           }    
+      return res;
+    }
+
+  int findDup2(int[] arr, int size){
+       int res=0;
+       for(int i=0;i<size;i++){
+              res^=arr[i];
+              res^=i;
+         }
+     return res;
+   }
+
+  int findDup3(int[] arr, int size){
+         for(int i=0;i<size;i++){
+              int pos = arr[i];
+              if(arr[pos-1]<0){
+                 return pos;  
+              }
+              else arr[pos-1]=-1*arr[pos-1];
+         }
+      return -1;
+  }
+

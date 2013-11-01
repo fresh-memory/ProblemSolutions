@@ -1,0 +1,21 @@
+unique visits
+http://blog.getspool.com/2011/11/29/fast-easy-realtime-metrics-using-redis-bitmaps/
+bitmap
+<key, offset, val>
+<date,user,# of visit>
+code:
+
+
+TOP K stats
+http://dimacs.rutgers.edu/~graham/pubs/papers/freqcacm.pdf
+
+Many algos.
+
+No negative update: only add not substracting
+
+Frequenty: build a K heap storing<element, count>, if a new item is not in heap, the count of every element in heap -1.
+When the MIN count in  the heap is 0, the corresponing element need to be removed.
+
+SpaceSaving: build a K heap storing <element, count>, if a new item is not found in heap, replace the element with the min count with the new item and increment the min_count by 1. a short proof demonstrates that the
+counts of all stored items solve the frequency estimation problem
+with error n/k.......

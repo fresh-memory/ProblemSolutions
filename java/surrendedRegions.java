@@ -1,3 +1,4 @@
+
 /**
 *  Cannot pass large test
 *  Bug when first row has 0, this code may create false positives
@@ -13,6 +14,163 @@ and is surrended by all "X"
 * Should implement bfs one using queue
 * 
 */
+
+
+//DFS
+
+public class Solution {
+    public void solve(char[][] board) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        
+        int rows = board.length;
+        if(rows==0) return;
+        int columns = board[0].length;
+       // Queue<Character[][]> q = new LinkedList<Character[][]>();
+        for(int i=0;i<columns;i++){
+            if(board[0][i]=='O'){
+               helper(board,0,i);
+            }
+            if(board[rows-1][i]=='O'){
+                helper(board,rows-1,i);
+            }
+        }
+        for(int j=1;j<rows-1;j++){
+            if(board[j][0]=='O'){
+               helper(board,j,0);
+            }
+            if(board[j][columns-1]=='O'){
+                helper(board,j,columns-1);
+            }
+        
+        }
+        
+        for(int i=0;i<columns;i++){
+            for(int j=0;j<rows;j++){
+                if(board[i][j]=='O'){
+                    board[i][j]='X';
+                }
+                else if(board[i][j]=='*'){
+                    board[i][j]='O';
+                }
+            }
+        }
+        
+    }
+    
+    public void helper(char[][] board, int x, int y){
+           Queue<Integer> q = new LinkedList<Integer>();
+           
+           if(x>=0 && x<board[0].length&&y>=0&&y<board.length&&board[x][y]=='O'){
+             
+             board[x][y]='*';
+             
+             helper(board,x+1,y);
+             helper(board,x-1,y);
+             helper(board,x,y+1);
+             helper(board,x,y-1);
+           }
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//BFS
+
+public class Solution {
+    public void solve(char[][] board) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        
+        int rows = board.length;
+        if(rows==0) return;
+        int columns = board[0].length;
+        for(int i=0;i<columns;i++){
+            if(board[0][i]=='O'){
+               helper(board,0,i);
+            }
+            if(board[rows-1][i]=='O'){
+                helper(board,rows-1,i);
+            }
+        }
+        for(int j=1;j<rows-1;j++){
+            if(board[j][0]=='O'){
+               helper(board,j,0);
+            }
+            if(board[j][columns-1]=='O'){
+                helper(board,j,columns-1);
+            }
+        
+        }
+        
+        for(int i=0;i<columns;i++){
+            for(int j=0;j<rows;j++){
+                if(board[i][j]=='O'){
+                    board[i][j]='X';
+                }
+                else if(board[i][j]=='*'){
+                    board[i][j]='O';
+                }
+            }
+        }
+        
+    }
+    
+    public void helper(char[][] board, int x, int y){
+           Queue<Integer> q = new LinkedList<Integer>();
+           
+            check(board, x,y,q);
+            
+             while(!q.isEmpty()){
+                 int coor = q.remove();
+                 int i=coor/board.length;
+                 int j=coor%board.length;
+                 check(board,i+1,j,q);
+                 check(board,i-1,j,q);
+                 check(board,i,j+1,q);
+                 check(board,i,j-1,q);
+             }
+      }
+    
+    
+    
+    void check(char[][] board, int x, int y, Queue q){
+        if(x>=0 && x<board[0].length&&y>=0&&y<board.length&&board[x][y]=='O'){
+               board[x][y]='*';
+               q.add(x*board.length+y);
+               
+        } 
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 public class Solution {
     public void solve(char[][] board) {

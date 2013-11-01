@@ -25,7 +25,7 @@ public class Solution {
         }
         //n+1 is * 
         else if(n+1< lenp && p.charAt(n+1)=='*') {
-            
+                //while loop
                while(m<lens &&(p.charAt(n)=='.' || s.charAt(m)==p.charAt(n)) ){             
                   if(helper(s,m,p,n+2,lens,lenp)) return true;
                   m++;

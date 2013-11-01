@@ -1,0 +1,10 @@
+For many *nix applications, the piece that does the backend work is called a "daemon" (think "service" in Windows-land), while the interface or client application is what you use to control or access the daemon. The daemon is most often named the same as the client, with the letter "d" appended to it. For example "imap" would be a client that connects to the "imapd" daemon.
+
+
+很有意思的tool
+(gdb) p 0x34de
+$1 = 13534
+
+hange owner to avoid sudo       chown –R alice *
+
+

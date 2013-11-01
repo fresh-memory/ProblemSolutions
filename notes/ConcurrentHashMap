@@ -1,0 +1,4 @@
+ConcurrentHashMap performs better than SynchronizedMap, HashTable,HashMap. It does not guarantee same view for all threads. It is ideal for written intensive, light read scenario. 
+SynchronizedMap locks entire table but guarantee same view for all threads. 
+HashTable is old implementation. need to lock entire table causing performance degradation. 
+HashMap is not thread safe but allow either key or value is null.

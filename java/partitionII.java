@@ -34,11 +34,6 @@ public class Solution {
                   }
                   return res;
               }
-              //if(start==end-1){
-            //      if(s.charAt(start)==s.charAt(end)){
-             //         return 
-              //    }
-              //}
               
              for(int i=start;i<end;i++){
                String front = s.substring(start,i+1);

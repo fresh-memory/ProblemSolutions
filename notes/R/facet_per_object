@@ -1,0 +1,41 @@
+#facet_per_object
+per_uuid_size<-read.csv(file="/Users/feidong/Desktop/readFE charts and data/facet_per_object.data",sep="\t", head=FALSE)
+Bucket=per_uuid_size$V2*10
+uuid_size=cbind(per_uuid_size,Bucket)
+single=which(uuid_size$V1=="SINGLE_GET")
+single = uuid_size[single,]
+ssum=sum(single$V3)
+single=single[with(single, order(single$V2)), ]
+scumsum=cumsum(single$V3)
+single=cbind(single, scumsum)
+spct= scumsum/ssum
+single=cbind(single,spct)
+plot(single$Bucket,spct,log='x',col="blue",xlab="# of facet per object (x-axis shown in actual number dots plotted in log)", ylab="Percentage",main="Cumulative Distribution for Number of Facet per Object")
+points(60,0.99,pch=24,col="red")
+post=which(uuid_size$V1=="BATCH_POST")
+post=uuid_size[post,]
+psum=sum(post $V3)
+post = post[with(post, order(post $V2)), ]
+pcumsum=cumsum(post$V3)
+post =cbind(post,pcumsum)
+ppct= pcumsum/psum
+post =cbind(post,ppct)
+points(post$Bucket,ppct,log='x',col="orange",pch=23)
+points(10,0.99,pch=24,col="red")
+bget=which(uuid_size$V1=="BATCH_GET")
+bget = uuid_size[bget,]
+bsum=sum(bget$V3)
+bget=bget[with(bget, order(bget$V2)), ]
+bcumsum=cumsum(bget$V3)
+bget=cbind(bget,bcumsum)
+bpct= bcumsum/bsum
+bget=cbind(bget,bpct)
+points(bget$Bucket,bpct,log='x',col="green",pch=22)
+points(20,0.99,pch=24,col="red")
+legend(400,0.4,c("SINGLE-GET", "BATCH-GET","POST"),col=c("blue","green","orange"),pch=21:23)
+textxy(10,0.6,"99% BATCH-GET <=20 Max ~370",1:50)
+#textxy(15000,0.75,"Max ~35KB",1:50)
+textxy(10,0.55," 99% POST <=10 Max~90",1:50 )
+#textxy(15000,0.65,"Max ~520KB",1:50)
+textxy(10,0.5,"99% SINGLE-GET <=60 Max ~1010",1:50)
+#textxy(15000,0.55,"Max ~749KB",1:50)

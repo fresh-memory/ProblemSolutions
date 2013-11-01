@@ -1,0 +1,16 @@
+Phone 1:
+Questions similar to surrounded region
+
+Phone 2:
+
+Given a->b
+b->c 
+
+d->e
+
+type of relationships, find disconnected components. 
+
+disjoint set
+
+Follow up:
+How to find disconnected components in large scale data. how to solve this problem using MR.

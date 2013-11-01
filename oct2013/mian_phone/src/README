@@ -1,0 +1,8 @@
+  The blackjack game is implemented in JAVA. Before start playing game, please make sure you have JAVA environment installed. The entry point of the code is GameStarter class. 
+  To start playing blackjack game, please open the console and type the following command in console:
+	cd <current directory>
+	java GameStarter
+
+ If you'd like to recompile the code and start a game, please type   
+  	javac *.java 
+  	java GameStarter

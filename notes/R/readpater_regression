@@ -1,0 +1,17 @@
+#readpattern regression
+single_before <-read.csv(file="/Users/feidong/single_before",sep="\t", head=FALSE)
+single_before=single_before[which(single_before$V4==1),]
+x=which(single_before$V1<27908.72)
+singel_before=single_before[x,]
+log_duration=log(single_before$V1)
+pregss=glm.nb(log_duration~single_before$V2+single_before$V5)
+#modelselection=stepAIC(pregss)
+#modelselection$anova
+P=predict(pregss,newdata=single_before,type="response",se.fit=TRUE)
+upr=with(P,fit+(2*se.fit))
+lwr=with(P,fit+(2*se.fit))
+par(mfrow=c(1,1))
+plot(single_before$V2,log_duration,xlim=range(single_before$V2),ylim=range(log_duration), col="red",xlab="size", ylab="duration",main="observed(red) vs fitted(blue)")
+points(single_before$V2,P$fit,col="blue")
+points(loess.smooth(single_before$V2,log_duration),type="l", col="red")
+points(loess.smooth(single_before$V2,P$fit),type="l", col="blue")

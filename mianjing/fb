@@ -1,0 +1,73 @@
+/*
+Write a complete syntactically correct function in the language of your choice that does the following:
+
+Given two digital clock digits, compute how many LEDs turn on
++ how many LEDs turn off when switching from the first digit
+to the second digit.
+
+Example input: 5 and 4
+
+ -
+|    | |
+ -    -
+  |    |
+ -
+ 
+When switching from 5 to 4, 2 LEDs turn off (the top and the bottom one).
+When switching from 5 to 4, 1 LED turns on (the upper LED on the right side).
+So the answer is 2 + 1 = 3.
+*/
+
+7 bits
+
+    1011011
+5:
+    0110011
+    
+    1101000
+    
+    
+    
+    int bitChange(boolean[] a, boolean[] b){
+        
+        //of equal length, both 7
+        int len= 7;
+        int i=0;
+        int count=0;
+        boolean[] result = new boolean[7];
+        while(i<7){
+          result[i]=b[i]^a[i];
+          if(result[i]) count++;
+          i++;
+        }
+        return count;
+    }
+    
+
+
+// Given a set of elements, return all possible subsets of that set.
+// In: 1, 2, 3
+// Out: [1, 2, 3], [1, 2], [2, 3], [1, 3], [1], [2], [3], []
+
+      ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+      ArrayList<ArrayList<Integer>> subsets(Set<Integer> set){
+             if(set.size()==0) return res;
+              ArrayList<Integer> arr = new ArrayList<Integer>();
+               ArrayList<Integer> input = new ArrayList(set.toKeySet());
+             return helper(input,0, arr );
+      }
+      
+       ArrayList<ArrayList<Integer>> helper(ArrayList<Integer> input, int pos, ArrayList<Integer> arr){
+       
+                      
+                       ArrayList<Integer> subset = new ArrayList<Integer>(arr);
+                       res.add(subset);
+                
+                       for(int i=pos;i<input.size();i++){
+                            arr.add(input[i]);
+                            helper(input,i+1, arr );
+                            arr.remove(arr.size()-1);
+                       }
+             return res;
+       }
+

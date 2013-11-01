@@ -1,0 +1,67 @@
+
+
+
+
+     public class HashTable<K,V> {
+        ArrayList<LinkedList<Cell>> hashtable;
+        private int capacity;
+       
+       HashTable(int capacity) {
+            this.capaciy = capacity;
+            hashtable = (<LinkedList<K,V>>) new ArrayList[capacity];
+       }
+       
+       public void add(Cell cell) {
+              K k = cell.getKey();
+              add(k, cell);
+       }
+
+
+       public void add(K key, Cell cell) {
+              int code =  hashcode(key);
+              LinkedList<Cell> ll = hashtable.get(code);
+              if(ll==null) ll = new LinkedList<Cell>();
+              if(ll.get(cell)!=null) {
+                 return;
+              }
+              ll.add(cell);
+        }
+
+       public boolean containsKey(K key) {
+              int code = hashcode(key);
+              return hashtable.get(code)!=null;
+     
+       }
+       public int hashcode(K key) {
+            int code =  key.value%capacity;
+            return code;
+       }
+       
+       public V get(K key) {
+              if(contains(key)){
+               int code = hascode(key);
+               LinkedList<Cell> ll = hashtable.get(code);
+               for(Cell c: ll) {
+                  if(c.key == key) {
+                     return c.value;  
+                  }
+               }
+              }
+              else throws new Exception("there is no such a key");
+       }
+
+    }
+
+
+        class Cell{
+           K key;
+           V value;
+           Cell(K key, V value) {
+               this.key = key;
+               this.value = value;
+           }
+        
+           K getKey() {
+              return key;
+           }
+       }

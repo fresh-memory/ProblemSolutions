@@ -1,0 +1,42 @@
+per_uuid_size<-read.csv(file="/Users/feidong/Desktop/readFE charts and data/uuid_avg_size_by_1KB.csv",sep="\t", head=FALSE)
+library(MASS)
+library(calibrate)
+Bucket=per_uuid_size$V2
+uuid_size=cbind(per_uuid_size,Bucket)
+single=which(uuid_size$V1=="SINGLE_GET")
+single = uuid_size[single,]
+single=single[with(single, order(single$V2)), ]
+scumsum=cumsum(single$V3)
+ssum=sum(single$V3)
+single=cbind(single, scumsum)
+spct= scumsum/ssum
+single=cbind(single,spct)
+plot(single$Bucket,spct,log='x',col="blue",xlab="Object Size(x-axis shown in KB dots plotted in log)",ylab="Percentage",main="Cumulative Distribution for Average Object Size")
+points(28,0.99,pch=24,col="red")
+bget=which(uuid_size$V1=="BATCH_GET")
+bget = uuid_size[bget,]
+bget=bget[with(bget, order(bget$V2)), ]
+bcumsum=cumsum(bget$V3)
+bsum=sum(bget$V3)
+bget=cbind(bget, bcumsum)
+bpct= bcumsum/bsum
+bget=cbind(bget,bpct)
+points(bget$Bucket,bpct,log='x',col="green",pch=22)
+points(7,0.99,pch=24,col="red")
+post=which(uuid_size $V1=="BATCH_POST")
+post= uuid_size[post,]
+post = post[with(post, order(post $V2)), ]
+pcumsum=cumsum(post$V3)
+psum=sum(post$V3)
+post=cbind(post, pcumsum)
+ppct= pcumsum/psum
+post =cbind(post,ppct)
+points(post $Bucket,ppct,log='x',col="orange",pch=23)
+#points(7,0.99,pch=24,col="red")
+legend(150,0.2,c("SINGLE-GET", "BATCH-GET","POST"),col=c("blue","green","orange"),pch=21:23)
+textxy(5,0.6,"99% BATCH-GET <=7KB Max ~520KB",1:50)
+#textxy(15000,0.75,"Max ~35KB",1:50)
+textxy(5,0.55," 99% POST <=7KB Max~35KB",1:50 )
+#textxy(15000,0.65,"Max ~520KB",1:50)
+textxy(5,0.5,"99% SINGLE-GET <=28KB Max ~749KB",1:50)
+#textxy(15000,0.55,"Max ~749KB",1:50)

@@ -1,0 +1,5 @@
+Array: ArrayIndexOutOfBound
+Stack: peek()/pop() before check isEmpty()
+while/for:  after loop special handling
+NULL pointer
+ConcurencyModification

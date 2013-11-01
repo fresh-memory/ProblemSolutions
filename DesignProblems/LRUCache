@@ -1,0 +1,62 @@
+import java.util.HashMap;
+import java.util.LinkedList;
+
+
+public class LRUusingLinkedlist<K,V> {
+        private LinkedList<K> ll;
+	private HashMap<K,V> cache;
+	private int cacheSize;
+	private int miss;
+	private int hit;
+	LRUusingLinkedlist(int _cacheSize){
+		ll = new LinkedList<K>();
+		cache = new HashMap<K,V>(cacheSize);
+		this.cacheSize=_cacheSize;
+	}
+	
+	V get(K k){
+		
+		if(!cache.containsKey(k)){
+			miss++;
+			V v = findInMemory(k);
+			this.put(k, v);
+			K key = ll.removeFirst();
+			return v;
+		}
+		//hit
+		else{
+			hit++;
+			V v = cache.get(k);
+			ll.remove(k);
+			ll.addLast(k);
+			return v;
+		}
+		
+	}
+	
+	int getMissStats(){
+		return this.miss; 
+	}
+	
+	int getHitStats(){
+		return this.hit;
+	}
+	void put(K k, V v ) throws Exception{
+		if(cache.containsKey(k)){
+			//throw new Exception("already contains k");
+			ll.remove(k);
+		}
+		else{
+			
+			while(cache.size()+1>cacheSize){
+				K key= ll.removeFirst();
+				cache.remove(key);
+			   }
+			ll.addLast(k);
+			cache.put(k, v);
+		}
+
+	}
+	
+}
+
